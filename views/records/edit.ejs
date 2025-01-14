@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Record</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+        <h1>Edit Record</h1>
+
+        <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=PUT" method="POST">
+            <label for="artist">Artist:</label>
+            <input type="text" id="artist" name="artist" value="<%= record.artist %>" required /><br />
+
+            <label for="album">Album:</label>
+            <input type="text" id="album" name="album" value="<%= record.album %>" required /><br />
+
+            <label for="format">Format:</label>
+            <select id="format" name="format" required>
+                <option value="LP" <%=record.format==='LP' ? 'selected' : '' %>>
+                    LP
+                </option>
+                <option value="7 inch" <%=record.format==='7 inch' ? 'selected' : '' %>
+                    >
+                    7 inch
+                </option>
+            </select><br />
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating">
+                <option value="" <%=!record.rating ? 'selected' : '' %>>No Rating</option>
+                <option value="*" <%=record.rating==='*' ? 'selected' : '' %>>*</option>
+                <option value="**" <%=record.rating==='**' ? 'selected' : '' %>>**</option>
+                <option value="***" <%=record.rating==='***' ? 'selected' : '' %>>***</option>
+                <option value="****" <%=record.rating==='****' ? 'selected' : '' %>>****</option>
+                <option value="*****" <%=record.rating==='*****' ? 'selected' : '' %>>
+                    *****
+                </option>
+            </select><br />
+
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" rows="4" cols="50"><%= record.review %></textarea><br />
+
+            <button type="submit">Update Record</button>
+        </form>
+</body>
+
+</html>

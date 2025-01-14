@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= user.username %>'s Collection
+    </title>
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/_navbar.ejs') %>
+    </header>
+
+    <main>
+        <h1>
+            <%= user.username %>'s Collection
+        </h1>
+
+        <% if (user.recordCollection.length> 0) { %>
+            <ul>
+                <% user.recordCollection.forEach((record)=> { %>
+                    <li>
+                        <strong>Artist:</strong>
+                        <%= record.artist %><br />
+                            <strong>Album:</strong>
+                            <%= record.album %><br />
+                                <strong>Format:</strong>
+                                <%= record.format %><br />
+                                    <% if (record.rating) { %>
+                                        <strong>Rating:</strong>
+                                        <%= record.rating %><br />
+                                            <% } %>
+                                                <% if (record.review) { %>
+                                                    <strong>Review:</strong>
+                                                    <%= record.review %><br />
+                                                        <% } %>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } else { %>
+                <p>This user has no items in their collection.</p>
+                <% } %>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Record Collection</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+        <h1>Welcome to My Record Collection</h1>
+
+        <% if (records.length> 0) { %>
+            <ul>
+                <% records.forEach((record)=> { %>
+                    <li>
+                        <strong>Artist:</strong>
+                        <%= record.artist %><br />
+                            <strong>Album:</strong>
+                            <%= record.album %><br />
+                                <strong>Format:</strong>
+                                <%= record.format %><br />
+                                    <% if (record.rating) { %>
+                                        <strong>Rating:</strong>
+                                        <%= record.rating %><br />
+                                            <% } %>
+                                                <% if (record.review) { %>
+                                                    <strong>Review:</strong>
+                                                    <%= record.review %><br />
+                                                        <% } %>
+
+                                                            <a
+                                                                href="/users/<%= user._id %>/records/<%= record._id %>/edit">Edit</a>
+
+                                                            <form
+                                                                action="/users/<%= user._id %>/records/<%= record._id %>?_method=DELETE"
+                                                                method="POST" style="display:inline;">
+                                                                <button type="submit">Delete</button>
+                                                            </form>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } else { %>
+                <p>There are no records in your collection.</p>
+                <% } %>
+
+                    <a href="/users/<%= user._id %>/records/new">Add a New Record</a>
+</body>
+
+</html>

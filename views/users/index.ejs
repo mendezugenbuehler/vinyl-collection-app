@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Community</title>
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/_navbar.ejs') %>
+    </header>
+
+    <main>
+        <h1>Explore Our Community</h1>
+
+        <% if (users.length> 0) { %>
+            <ul>
+                <% users.forEach((user)=> { %>
+                    <li>
+                        <strong>
+                            <%= user.username %>
+                        </strong>
+                        <a href="/users/<%= user._id %>/records">View their Collection</a>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } else { %>
+                <p>No users found. Please join our community!</p>
+                <% } %>
+    </main>
+</body>
+
+</html>
