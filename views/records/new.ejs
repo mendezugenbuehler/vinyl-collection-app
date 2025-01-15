@@ -4,59 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Record</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Add a New Record</title>
 </head>
 
 <body>
-    <header>
-        <%- include('../partials/_navbar.ejs') %>
-    </header>
-    <main>
+    <%- include('../partials/_navbar.ejs') %>
         <h1>Add a New Record</h1>
         <form action="/users/<%= user._id %>/records" method="POST">
+            <label for="artist">Artist:</label>
+            <input type="text" name="artist" id="artist" required>
 
-            <div>
-                <label for="artist">Artist:</label>
-                <input type="text" id="artist" name="artist" required>
-            </div>
+            <label for="album">Album:</label>
+            <input type="text" name="album" id="album" required>
 
-            <div>
-                <label for="album">Album:</label>
-                <input type="text" id="album" name="album" required>
-            </div>
+            <label for="format">Format:</label>
+            <select name="format" id="format" required>
+                <option value="LP">LP</option>
+                <option value="7 inch">7 inch</option>
+            </select>
 
-            <div>
-                <label for="format">Format:</label>
-                <select id="format" name="format" required>
-                    <option value="">-- Select Format --</option>
-                    <option value="LP">LP</option>
-                    <option value="7 inch">7 inch</option>
-                </select>
-            </div>
+            <label for="rating">Rating:</label>
+            <select name="rating" id="rating">
+                <option value="*">*</option>
+                <option value="**">**</option>
+                <option value="***">***</option>
+                <option value="****">****</option>
+                <option value="*****">*****</option>
+            </select>
 
-            <div>
-                <label for="rating">Rating:</label>
-                <select id="rating" name="rating">
-                    <option value="">-- Select Rating --</option>
-                    <option value="*">*</option>
-                    <option value="**">**</option>
-                    <option value="***">***</option>
-                    <option value="****">****</option>
-                    <option value="*****">*****</option>
-                </select>
-            </div>
+            <label for="review">Review:</label>
+            <textarea name="review" id="review"></textarea>
 
-            <div>
-                <label for="review">Review:</label>
-                <textarea id="review" name="review" rows="4" placeholder="Write your review here..."></textarea>
-            </div>
-
-            <div>
-                <button type="submit">Add Record</button>
-            </div>
+            <button type="submit">Add Record</button>
         </form>
-    </main>
 </body>
 
 </html>

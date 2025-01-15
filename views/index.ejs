@@ -2,30 +2,37 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vinyl Collection</title>
-  <link rel="stylesheet" href="/styles/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Collection</title>
 </head>
 
 <body>
-  <header>
-    <%- include('./partials/_navbar.ejs') %>
-  </header>
-  <main>
+    <nav>
+        <%- include('./partials/_navbar.ejs') %>
+    </nav>
+
+    <h1>Welcome to the Record Collection</h1>
+
     <% if (user) { %>
-      <h1>Welcome to the Vinyl Collection, <%= user.username %>!</h1>
-      <p>
-        <a href="/auth/sign-out">Sign out</a>
-      </p>
-      <% } else { %>
-        <h1>Welcome to the Vinyl Collection, guest.</h1>
-        <p>
-          <a href="/auth/sign-up">Sign up</a> or
-          <a href="/auth/sign-in">Sign in</a>.
-        </p>
-        <% } %>
-  </main>
+        <h2>Your Record Collection</h2>
+        <a href="/users/<%= user._id %>/records/new">Add New Record</a>
+        <ul>
+            <% records.forEach(record=> { %>
+                <li>
+                    <strong>
+                        <%= record.artist %> - <%= record.album %>
+                    </strong>
+                    <a href="/users/<%= user._id %>/records/<%= record._id %>/edit">Edit</a>
+                    <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=DELETE" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+                <% }) %>
+        </ul>
+        <% } else { %>
+            <p>Sign in to flip through your records or sign up to get started!</p>
+            <% } %>
 </body>
 
 </html>

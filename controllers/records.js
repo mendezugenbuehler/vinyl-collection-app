@@ -1,14 +1,19 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../models/user.js');
 
-//index
+// Show 
 router.get('/', async (req, res) => {
     try {
-        const currentUser = await User.findById(req.session.user._id);
+        const userToView = await User.findById(req.session.user._id);
+        if (!userToView) {
+            return res.redirect('/');
+        }
+
         res.render('records/index.ejs', {
-            records: currentUser.recordCollection,
+            records: userToView.recordCollection,
+            isCurrentUser: true,
+            user: req.session.user,
         });
     } catch (error) {
         console.log(error);
@@ -16,12 +21,24 @@ router.get('/', async (req, res) => {
     }
 });
 
-//new
+// Show full record details 
+router.get('/:recordId', async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.session.user._id);
+        const recordToView = currentUser.recordCollection.id(req.params.recordId);
+        res.render('records/show.ejs', { record: recordToView });
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
+// Show form to add a new record 
 router.get('/new', (req, res) => {
     res.render('records/new.ejs');
 });
 
-//delete and post
+// Create new 
 router.post('/', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -42,7 +59,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-//update
+// Edit 
 router.get('/:recordId/edit', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -54,7 +71,7 @@ router.get('/:recordId/edit', async (req, res) => {
     }
 });
 
-//change
+// Update record
 router.put('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -76,7 +93,7 @@ router.put('/:recordId', async (req, res) => {
     }
 });
 
-// delete
+// Delete record
 router.delete('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);

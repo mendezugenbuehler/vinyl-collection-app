@@ -1,0 +1,21 @@
+<h1>Record Details</h1>
+<%- include('../partials/_navbar.ejs') %>
+    <p><strong>Artist:</strong>
+        <%= record.artist %>
+    </p>
+    <p><strong>Album:</strong>
+        <%= record.album %>
+    </p>
+    <p><strong>Format:</strong>
+        <%= record.format %>
+    </p>
+    <p><strong>Rating:</strong>
+        <%= record.rating || 'N/A' %>
+    </p>
+    <p><strong>Review:</strong>
+        <%= record.review || 'No review available.' %>
+    </p>
+
+    <a href="/users/<%= user._id %>/records/<%= record._id %>/edit">Edit</a>
+
+    <a href="/users/<%= user._id %>/records">Back to Collection</a>
