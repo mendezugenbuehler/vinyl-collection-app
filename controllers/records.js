@@ -2,17 +2,17 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 
-// Show 
-router.get('/', async (req, res) => {
+// Show collection for a specific user
+router.get('/:userId', async (req, res) => {  //THIS IS NOW CORRECT - are the other routes wrong for add??
     try {
-        const userToView = await User.findById(req.session.user._id);
+        const userToView = await User.findById(req.params.userId);
         if (!userToView) {
             return res.redirect('/');
         }
 
         res.render('records/index.ejs', {
             records: userToView.recordCollection,
-            isCurrentUser: true,
+            isCurrentUser: req.session.user._id == userToView._id,
             user: req.session.user,
         });
     } catch (error) {
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Show full record details 
+// Show full record details
 router.get('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -33,12 +33,12 @@ router.get('/:recordId', async (req, res) => {
     }
 });
 
-// Show form to add a new record 
+// Show form to add a new record
 router.get('/new', (req, res) => {
     res.render('records/new.ejs');
 });
 
-// Create new 
+// Create new record
 router.post('/', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -48,6 +48,7 @@ router.post('/', async (req, res) => {
             format: req.body.format,
             rating: req.body.rating || null,
             review: req.body.review || '',
+            _user: currentUser._id  
         };
 
         currentUser.recordCollection.push(newRecord);
@@ -59,7 +60,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Edit 
+// Edit record
 router.get('/:recordId/edit', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);

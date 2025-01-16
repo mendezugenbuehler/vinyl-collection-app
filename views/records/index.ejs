@@ -1,23 +1,38 @@
-<h1>Your Record Collection</h1>
-<%- include('../partials/_navbar.ejs') %>
-    <ul>
-        <% records.forEach(record=> { %>
-            <li>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Record Collection</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Your Record Collection</h1>
 
-                <a href="/users/<%= user._id %>/records/<%= record._id %>">
-                    <strong>
-                        <%= record.artist %> - <%= record.album %>
-                    </strong>
-                </a>
+    <% if (records.length > 0) { %>
+      <ul>
+        <% records.forEach((record) => { %>
+          <li>
+            <strong><%= record.artist %> - <%= record.album %></strong><br />
+            Format: <%= record.format %><br />
+            Rating: <%= record.rating || 'N/A' %><br />
+            Review: <%= record.review || 'No review available' %><br />
 
-                <a href="/users/<%= user._id %>/records/<%= record._id %>/edit">Edit</a>
+            <!-- Edit Button -->
+            <a href="/users/<%= user._id %>/records/<%= record._id %>/edit">Edit</a>
 
-                <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-            <% }); %>
-    </ul>
+            <!-- Delete Button -->
+            <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>You have no records in your collection yet.</p>
+    <% } %>
 
-    <!-- Add New Record Link - moved to the bottom -->
-    <a href="/users/<%= user._id %>/records/new">Add New Record</a>
+    <!-- Add New Record Button -->
+    <a href="/records/new">Add New Record</a>
+  </body>
+</html>
