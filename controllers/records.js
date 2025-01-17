@@ -2,8 +2,12 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 
-// Show collection for a specific user
-router.get('/:userId', async (req, res) => {  //THIS IS NOW CORRECT - are the other routes wrong for add??
+router.get('/new', (req, res) => {
+    res.render('records/new.ejs');
+});
+
+//Index
+router.get('/:userId', async (req, res) => {
     try {
         const userToView = await User.findById(req.params.userId);
         if (!userToView) {
@@ -21,7 +25,6 @@ router.get('/:userId', async (req, res) => {  //THIS IS NOW CORRECT - are the ot
     }
 });
 
-// Show full record details
 router.get('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -33,12 +36,7 @@ router.get('/:recordId', async (req, res) => {
     }
 });
 
-// Show form to add a new record
-router.get('/new', (req, res) => {
-    res.render('records/new.ejs');
-});
-
-// Create new record
+//CREATE
 router.post('/', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -48,7 +46,7 @@ router.post('/', async (req, res) => {
             format: req.body.format,
             rating: req.body.rating || null,
             review: req.body.review || '',
-            _user: currentUser._id  
+            _user: currentUser._id
         };
 
         currentUser.recordCollection.push(newRecord);
@@ -60,7 +58,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Edit record
+//EDIT
 router.get('/:recordId/edit', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -72,7 +70,7 @@ router.get('/:recordId/edit', async (req, res) => {
     }
 });
 
-// Update record
+//UPDATE
 router.put('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -94,7 +92,7 @@ router.put('/:recordId', async (req, res) => {
     }
 });
 
-// Delete record
+//DELETE
 router.delete('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);

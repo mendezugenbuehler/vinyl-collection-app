@@ -2,38 +2,39 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Record Collection</title>
-  <link rel="stylesheet" href="/styles/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Collection</title>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 
 <body>
-  <header>
-    <%- include('./partials/_navbar.ejs') %> 
-  </header>
-  
-  <main>
-    <% if (user) { %>
-      <h1>Welcome to the Record Collection app, <%= user.username %>!</h1>
-      <p>You're logged in! You can:</p>
-      <ul>
-        <li>
-          <a href="/users/<%=user._id%>/records/<%=user._id%>">View your collection</a> and flip through your records.
-        </li>
-        <li>
-          <a href="/users">Explore our community</a> to see what others have picked up.
-        </li>
-      </ul>
-    <% } else { %>
-      <h1>Welcome to the Record Collection, guest.</h1>
-      <p>Sign up or sign in to start exploring and view records.</p>
-      <ul>
-        <li><a href="/auth/sign-up">Sign up</a> to join the collection.</li>
-        <li><a href="/auth/sign-in">Sign in</a> to access your records.</li>
-      </ul>
-    <% } %>
-  </main>
+    <header>
+        <%- include('./partials/_navbar.ejs') %>
+    </header>
+
+    <main>
+        <% if (user) { %>
+            <h1>Welcome to the Record Collection app, <%= user.username %>!</h1>
+            <p>You're logged in! You can:</p>
+            <ul>
+                <li>
+                    <a href="/users/<%=user._id%>/records/<%=user._id%>">View your collection</a> and flip through your
+                    records.
+                </li>
+                <li>
+                    <a href="/users">Explore our community</a> to see what others have picked up.
+                </li>
+            </ul>
+            <% } else { %>
+                <h1>Welcome to the Record Collection, guest.</h1>
+                <p>Sign up or sign in to start exploring and view records.</p>
+                <ul>
+                    <li><a href="/auth/sign-up">Sign up</a> to join the collection.</li>
+                    <li><a href="/auth/sign-in">Sign in</a> to access your records.</li>
+                </ul>
+                <% } %>
+    </main>
 </body>
 
 </html>

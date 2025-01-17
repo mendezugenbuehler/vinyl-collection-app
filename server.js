@@ -24,14 +24,19 @@ app.use(session({
 app.use(passUserToView);
 
 app.use('/auth', authController);
+
 app.use(isSignedIn);
-app.use('/users', usersController); 
-app.use('/users/:userId/records', recordsController); 
+
+app.use('/users', usersController);
+
+app.use('/users/:userId/records', recordsController);
+app.use('/records', recordsController);
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record-collection', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');
 });
+
 
 app.get('/', (req, res) => {
     if (!req.session.user) {
@@ -42,6 +47,7 @@ app.get('/', (req, res) => {
     const records = user.recordCollection || [];
     res.render('index.ejs', { user, records });
 });
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Server is running...');

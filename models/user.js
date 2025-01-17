@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    recordCollection: [recordSchema], 
+    recordCollection: [recordSchema],
 });
 
 const User = mongoose.model('User', userSchema);
