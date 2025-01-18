@@ -5,38 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a New Record</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
+    <!-- Navbar -->
     <%- include('../partials/_navbar.ejs') %>
+
+    <!-- Page Content -->
+    <main class="form-container">
         <h1>Add a New Record</h1>
+
+        <!-- Form to Add Record -->
         <form action="/users/<%= user._id %>/records" method="POST">
-            <label for="artist">Artist:</label>
-            <input type="text" name="artist" id="artist" required>
+            <label for="artist">Artist</label>
+            <input type="text" name="artist" id="artist" required><br>
 
-            <label for="album">Album:</label>
-            <input type="text" name="album" id="album" required>
+            <label for="album">Album</label>
+            <input type="text" name="album" id="album" required><br>
 
-            <label for="format">Format:</label>
+            <label for="format">Format</label>
             <select name="format" id="format" required>
                 <option value="LP">LP</option>
                 <option value="7 inch">7 inch</option>
-            </select>
+            </select><br>
 
-            <label for="rating">Rating:</label>
+            <label for="rating">Rating</label>
             <select name="rating" id="rating">
                 <option value="*">*</option>
                 <option value="**">**</option>
                 <option value="***">***</option>
                 <option value="****">****</option>
                 <option value="*****">*****</option>
-            </select>
+            </select><br>
 
-            <label for="review">Review:</label>
-            <textarea name="review" id="review"></textarea>
+            <label for="review">Review</label>
+            <textarea name="review" id="review" class="review-box"></textarea><br>
 
-            <button type="submit">Add Record</button>
+            <button type="submit" class="btn">Add Record</button>
         </form>
+    </main>
+
+    <!-- Back to Your Collection Button -->
+    <div class="button-container">
+        <a href="/users/<%= user._id %>/records" class="btn">Back to Your Collection</a>
+    </div>
 </body>
 
 </html>

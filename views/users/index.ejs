@@ -4,31 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Community</title>
+    <title>Explore Our Community</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
-    <header>
-        <%- include('../partials/_navbar.ejs') %>
-    </header>
+    <!-- Navbar -->
+    <%- include('../partials/_navbar.ejs') %>
 
+    <!-- Page Content -->
     <main>
         <h1>Explore Our Community</h1>
 
-        <% if (users.length> 0) { %>
-            <ul>
-                <% users.forEach((user)=> { %>
-                    <li>
-                        <strong>
-                            <%= user.username %>
-                        </strong>
-                        <a href="/users/<%= user._id %>/records">View their Collection</a>
+        <% if (users.length > 0) { %>
+            <ul class="community-list">
+                <% users.forEach((user) => { %>
+                    <li class="community-user">
+                        <h2><%= user.username %></h2>
+
+                        <!-- View Their Collection Button -->
+                        <a href="/users/<%= user._id %>/records" class="btn">View Their Collection</a>
                     </li>
-                    <% }); %>
+                <% }); %>
             </ul>
-            <% } else { %>
-                <p>No users found. Please join our community!</p>
-                <% } %>
+        <% } else { %>
+            <p>No users to display yet.</p>
+        <% } %>
+
+        <!-- Back to Your Collection Button -->
+        <% if (user) { %>
+            <div class="button-container" style="margin-bottom: 10px;">
+                <a href="/users/<%= user._id %>/records" class="btn">Back to Your Collection</a>
+            </div>
+        <% } %>
     </main>
 </body>
 

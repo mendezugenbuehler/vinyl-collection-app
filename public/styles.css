@@ -1,0 +1,267 @@
+/* Media Queries for Mobile */
+@media (max-width: 600px) {
+    .form-container,
+    .record-details,
+    .community-user,
+    .record-item {
+        width: 95%;
+    }
+
+    button, .btn {
+        width: 100%;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navbar */
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Container for forms, details, and lists */
+.form-container, .record-details, .community-user, .record-item {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+/* Remove bullets from lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Title Styling */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Form Elements */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.review-box {
+    height: 150px;
+}
+
+/* Buttons */
+button, .btn {
+    display: block;
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px auto 0;
+}
+
+button:hover, .btn:hover {
+    background-color: #4cae4c;
+}
+
+/* Record Collection Page */
+.record-list, .community-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.record-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.record-item button,
+.record-item .btn {
+    width: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Align Edit and Delete Buttons Horizontally */
+.record-item .btn-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Add New Record Button */
+.add-new-record {
+    text-align: center;
+    margin-top: 20px;
+    display: block;
+    width: auto;
+}
+
+/* Community Page */
+.community-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.community-user {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.community-user a.view-collection {
+    color: white;
+    background-color: #5cb85c;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.community-user a.view-collection:hover {
+    color: white;
+    background-color: #4cae4c;
+}
+
+/* Back to Explore Button */
+.back-to-explore {
+    display: block;
+    text-align: center;
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px auto;
+    text-decoration: none;
+}
+
+.back-to-explore:hover {
+    background-color: #4cae4c;
+}
+
+/* Edit Page */
+.form-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.text-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+/* Centered list styles */
+.centered-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Space between list items */
+}
+
+.centered-list li {
+    text-align: center;
+}
+
+.centered-list a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+}
+
+.centered-list a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 600px) {
+    .form-container,
+    .record-details,
+    .community-user,
+    .record-item {
+        width: 95%;
+    }
+
+    button, .btn {
+        width: 100%;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.index-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+

@@ -1,31 +1,49 @@
-<h1>Edit Record</h1>
-<%- include('../partials/_navbar.ejs') %>
-    <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=PUT" method="POST">
-        <label for="artist">Artist</label>
-        <input type="text" name="artist" id="artist" value="<%= record.artist %>" required><br>
+<!DOCTYPE html>
+<html lang="en">
 
-        <label for="album">Album</label>
-        <input type="text" name="album" id="album" value="<%= record.album %>" required><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Record</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
 
-        <label for="format">Format</label>
-        <select name="format" id="format">
-            <option value="LP" <%=record.format==='LP' ? 'selected' : '' %>>LP</option>
-            <option value="7 inch" <%=record.format==='7 inch' ? 'selected' : '' %>>7 inch</option>
-        </select><br>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
 
-        <label for="rating">Rating</label>
-        <select name="rating" id="rating">
-            <option value="*" <%=record.rating==='*' ? 'selected' : '' %>>*</option>
-            <option value="**" <%=record.rating==='**' ? 'selected' : '' %>>**</option>
-            <option value="***" <%=record.rating==='***' ? 'selected' : '' %>>***</option>
-            <option value="****" <%=record.rating==='****' ? 'selected' : '' %>>****</option>
-            <option value="*****" <%=record.rating==='*****' ? 'selected' : '' %>>*****</option>
-        </select><br>
+    <main>
+        <h1>Edit Record</h1>
 
-        <label for="review">Review</label>
-        <textarea name="review" id="review"><%= record.review %></textarea><br>
+        <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=PUT" method="POST" class="form-container">
+            <label for="artist">Artist</label>
+            <input type="text" name="artist" id="artist" value="<%= record.artist %>" required><br>
 
-        <button type="submit">Update Record</button>
-    </form>
+            <label for="album">Album</label>
+            <input type="text" name="album" id="album" value="<%= record.album %>" required><br>
 
-    <a href="/users/<%=user._id%>/records/<%=user._id%>">Back to Collection</a>
+            <label for="format">Format</label>
+            <select name="format" id="format">
+                <option value="LP" <%= record.format === 'LP' ? 'selected' : '' %>>LP</option>
+                <option value="7 inch" <%= record.format === '7 inch' ? 'selected' : '' %>>7 inch</option>
+            </select><br>
+
+            <label for="rating">Rating</label>
+            <select name="rating" id="rating">
+                <option value="*" <%= record.rating === '*' ? 'selected' : '' %>>*</option>
+                <option value="**" <%= record.rating === '**' ? 'selected' : '' %>>**</option>
+                <option value="***" <%= record.rating === '***' ? 'selected' : '' %>>***</option>
+                <option value="****" <%= record.rating === '****' ? 'selected' : '' %>>****</option>
+                <option value="*****" <%= record.rating === '*****' ? 'selected' : '' %>>*****</option>
+            </select><br>
+
+            <label for="review">Review</label>
+            <textarea name="review" id="review" class="review-box"><%= record.review %></textarea><br>
+
+            <button type="submit" class="btn">Update Record</button>
+        </form>
+
+        <a href="/users/<%= user._id %>/records" class="btn back-to-collection">Back to Collection</a>
+    </main>
+</body>
+
+</html>
