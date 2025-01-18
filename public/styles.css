@@ -44,6 +44,16 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Main container for index */
+.index-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    text-align: center;
+    padding: 40px 20px; /* Position near the top with padding */
+    height: auto; /* Let the content dictate the height */
+}
+
 /* Container for forms, details, and lists */
 .form-container, .record-details, .community-user, .record-item {
     background-color: white;
@@ -76,13 +86,15 @@ label {
 }
 
 input[type="text"],
+input[type="password"],
 textarea,
 select {
-    width: 100%;
+    width: 100%; /* Ensure all input fields are the same size */
     padding: 10px;
     margin: 5px 0 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 textarea {
@@ -113,38 +125,40 @@ button:hover, .btn:hover {
 }
 
 /* Record Collection Page */
-.record-list, .community-list {
+.record-list {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    gap: 20px; /* Space between record items */
+    justify-content: center; /* Center-align items within the container */
 }
 
 .record-item {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Spread content evenly */
+    width: 300px; /* Consistent width for all items */
+    min-height: 200px; /* Set a consistent base height */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.record-item button,
-.record-item .btn {
-    width: auto;
-    display: inline-block;
-    text-align: center;
+.record-schema {
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Prevent text from overflowing */
 }
 
-/* Align Edit and Delete Buttons Horizontally */
-.record-item .btn-group {
+.record-actions {
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    justify-content: center; /* Center-align buttons */
+    gap: 10px; /* Space between buttons */
 }
 
-/* Add New Record Button */
 .add-new-record {
+    margin-top: 30px;
     text-align: center;
-    margin-top: 20px;
-    display: block;
-    width: auto;
 }
 
 /* Community Page */
@@ -191,77 +205,13 @@ button:hover, .btn:hover {
     background-color: #4cae4c;
 }
 
-/* Edit Page */
-.form-container {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.text-input {
-    width: 100%;
+/* Align input fields and buttons for sign-in and sign-up */
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    width: 100%; /* Ensure all fields are uniform in size */
     padding: 10px;
-    font-size: 14px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-bottom: 15px;
 }
-
-/* Centered list styles */
-.centered-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; /* Space between list items */
-}
-
-.centered-list li {
-    text-align: center;
-}
-
-.centered-list a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-}
-
-.centered-list a:hover {
-    text-decoration: underline;
-    color: #0056b3;
-}
-
-/* Media Queries for Mobile */
-@media (max-width: 600px) {
-    .form-container,
-    .record-details,
-    .community-user,
-    .record-item {
-        width: 95%;
-    }
-
-    button, .btn {
-        width: 100%;
-    }
-
-    .btn-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
-.index-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-}
-
