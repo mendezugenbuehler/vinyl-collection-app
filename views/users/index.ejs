@@ -8,36 +8,34 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 
-<body>
-    <!-- Navbar -->
+<body class="community-page">
     <%- include('../partials/_navbar.ejs') %>
 
-    <!-- Page Content -->
-    <main>
-        <h1>Explore Our Community</h1>
+        <main>
+            <h1>Explore Our Community</h1>
 
-        <% if (users.length > 0) { %>
-            <ul class="community-list">
-                <% users.forEach((user) => { %>
-                    <li class="community-user">
-                        <h2><%= user.username %></h2>
+            <% if (users.length> 0) { %>
+                <ul class="community-list">
+                    <% users.forEach((user)=> { %>
+                        <li class="community-user">
+                            <h2>
+                                <%= user.username %>
+                            </h2>
+                            <a href="/users/<%= user._id %>/records" class="btn view-collection">View Their
+                                Collection</a>
+                        </li>
+                        <% }); %>
+                </ul>
+                <% } else { %>
+                    <p>No users to display yet.</p>
+                    <% } %>
+        </main>
 
-                        <!-- View Their Collection Button -->
-                        <a href="/users/<%= user._id %>/records" class="btn">View Their Collection</a>
-                    </li>
-                <% }); %>
-            </ul>
-        <% } else { %>
-            <p>No users to display yet.</p>
-        <% } %>
-
-        <!-- Back to Your Collection Button -->
         <% if (user) { %>
-            <div class="button-container" style="margin-bottom: 10px;">
-                <a href="/users/<%= user._id %>/records" class="btn">Back to Your Collection</a>
-            </div>
-        <% } %>
-    </main>
+            <footer class="community-footer">
+                <a href="/users/<%= user._id %>/records" class="btn back-to-collection-btn">Back to Your Collection</a>
+            </footer>
+            <% } %>
 </body>
 
 </html>

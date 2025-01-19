@@ -6,7 +6,6 @@ router.get('/new', (req, res) => {
     res.render('records/new.ejs');
 });
 
-//Index
 router.get('/:userId', async (req, res) => {
     try {
         const userToView = await User.findById(req.params.userId);
@@ -36,7 +35,6 @@ router.get('/:recordId', async (req, res) => {
     }
 });
 
-//CREATE
 router.post('/', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -58,7 +56,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-//EDIT
 router.get('/:recordId/edit', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -70,7 +67,6 @@ router.get('/:recordId/edit', async (req, res) => {
     }
 });
 
-//UPDATE
 router.put('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);
@@ -92,7 +88,6 @@ router.put('/:recordId', async (req, res) => {
     }
 });
 
-//DELETE
 router.delete('/:recordId', async (req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id);

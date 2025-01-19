@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome</title>
     <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
     <%- include('./partials/_navbar.ejs') %>
-    <main class="index-main">
-        <% if (user) { %>
-            <h1>Welcome to the Record Collection app, <%= user.username %>!</h1>
-            <p>You're logged in! You can:</p>
-            <ul>
-                <li><a href="/users/<%= user._id %>/records/<%= user._id %>">View your collection</a></li>
-                <li><a href="/users">Explore our community</a></li>
-            </ul>
-        <% } else { %>
-            <h1>Welcome to the Record Collection, guest.</h1>
-            <p>Please <a href="/auth/sign-up">Sign Up</a> or <a href="/auth/sign-in">Sign In</a> to get started.</p>
-        <% } %>
-    </main>
+        <main class="index-main">
+            <% if (user) { %>
+                <h1>Welcome to the Record Collection app, <%= user.username %>!</h1>
+                <p>You're logged in! You can:</p>
+                <ul>
+                    <li><a href="/users/<%= user._id %>/records/<%= user._id %>">View your collection</a></li>
+                    <li><a href="/users">Explore our community</a></li>
+                </ul>
+                <% } else { %>
+                    <h1>Welcome to the Record Collection, guest.</h1>
+                    <p>Please <a href="/auth/sign-up">Sign Up</a> or <a href="/auth/sign-in">Sign In</a> to get started.
+                    </p>
+                    <% } %>
+        </main>
 </body>
+
 </html>

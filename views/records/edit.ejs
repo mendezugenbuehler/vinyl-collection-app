@@ -11,39 +11,40 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <main>
-        <h1>Edit Record</h1>
+        <main>
+            <h1>Edit Record</h1>
 
-        <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=PUT" method="POST" class="form-container">
-            <label for="artist">Artist</label>
-            <input type="text" name="artist" id="artist" value="<%= record.artist %>" required><br>
+            <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=PUT" method="POST"
+                class="form-container">
+                <label for="artist">Artist</label>
+                <input type="text" name="artist" id="artist" value="<%= record.artist %>" required><br>
 
-            <label for="album">Album</label>
-            <input type="text" name="album" id="album" value="<%= record.album %>" required><br>
+                <label for="album">Album</label>
+                <input type="text" name="album" id="album" value="<%= record.album %>" required><br>
 
-            <label for="format">Format</label>
-            <select name="format" id="format">
-                <option value="LP" <%= record.format === 'LP' ? 'selected' : '' %>>LP</option>
-                <option value="7 inch" <%= record.format === '7 inch' ? 'selected' : '' %>>7 inch</option>
-            </select><br>
+                <label for="format">Format</label>
+                <select name="format" id="format">
+                    <option value="LP" <%=record.format==='LP' ? 'selected' : '' %>>LP</option>
+                    <option value="7 inch" <%=record.format==='7 inch' ? 'selected' : '' %>>7 inch</option>
+                </select><br>
 
-            <label for="rating">Rating</label>
-            <select name="rating" id="rating">
-                <option value="*" <%= record.rating === '*' ? 'selected' : '' %>>*</option>
-                <option value="**" <%= record.rating === '**' ? 'selected' : '' %>>**</option>
-                <option value="***" <%= record.rating === '***' ? 'selected' : '' %>>***</option>
-                <option value="****" <%= record.rating === '****' ? 'selected' : '' %>>****</option>
-                <option value="*****" <%= record.rating === '*****' ? 'selected' : '' %>>*****</option>
-            </select><br>
+                <label for="rating">Rating</label>
+                <select name="rating" id="rating">
+                    <option value="*" <%=record.rating==='*' ? 'selected' : '' %>>*</option>
+                    <option value="**" <%=record.rating==='**' ? 'selected' : '' %>>**</option>
+                    <option value="***" <%=record.rating==='***' ? 'selected' : '' %>>***</option>
+                    <option value="****" <%=record.rating==='****' ? 'selected' : '' %>>****</option>
+                    <option value="*****" <%=record.rating==='*****' ? 'selected' : '' %>>*****</option>
+                </select><br>
 
-            <label for="review">Review</label>
-            <textarea name="review" id="review" class="review-box"><%= record.review %></textarea><br>
+                <label for="review">Review</label>
+                <textarea name="review" id="review" class="review-box"><%= record.review %></textarea><br>
 
-            <button type="submit" class="btn">Update Record</button>
-        </form>
+                <button type="submit" class="btn">Update Record</button>
+            </form>
 
-        <a href="/users/<%= user._id %>/records" class="btn back-to-collection">Back to Collection</a>
-    </main>
+            <a href="/users/<%= user._id %>/records" class="btn back-to-collection">Back to Collection</a>
+        </main>
 </body>
 
 </html>

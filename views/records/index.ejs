@@ -10,32 +10,36 @@
 
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Your Record Collection</h1>
+        <h1>Your Record Collection</h1>
 
-    <% if (records.length > 0) { %>
-        <ul class="record-list">
-            <% records.forEach((record) => { %>
-                <li class="record-item">
-                    <div class="record-schema">
-                        <strong><%= record.artist %> - <%= record.album %></strong><br />
-                        Format: <%= record.format %><br />
-                        Rating: <%= record.rating || 'N/A' %><br />
-                        Review: <%= record.review || 'No review available' %>
-                    </div>
-                    <div class="record-actions">
-                        <a href="/users/<%= user._id %>/records/<%= record._id %>/edit" class="btn">Edit</a>
-                        <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn">Delete</button>
-                        </form>
-                    </div>
-                </li>
-            <% }); %>
-        </ul>
-    <% } else { %>
-        <p>You have no records in your collection yet.</p>
-    <% } %>
+        <% if (records.length> 0) { %>
+            <ul class="record-list">
+                <% records.forEach((record)=> { %>
+                    <li class="record-item">
+                        <div class="record-schema">
+                            <strong>
+                                <%= record.artist %> - <%= record.album %>
+                            </strong><br />
+                            Format: <%= record.format %><br />
+                                Rating: <%= record.rating || 'N/A' %><br />
+                                    Review: <%= record.review || 'No review available' %>
+                        </div>
+                        <div class="record-actions">
+                            <a href="/users/<%= user._id %>/records/<%= record._id %>/edit"
+                                class="btn record-action-btn">Edit</a>
+                            <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=DELETE"
+                                method="POST">
+                                <button type="submit" class="btn record-action-btn">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } else { %>
+                <p>You have no records in your collection yet.</p>
+                <% } %>
 
-    <a href="/users/<%= user._id %>/records/new" class="btn add-new-record">Add New Record</a>
+                    <a href="/users/<%= user._id %>/records/new" class="btn add-new-record">Add New Record</a>
 </body>
 
 </html>

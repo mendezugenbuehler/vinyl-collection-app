@@ -2,13 +2,23 @@
 <h1>Record Details</h1>
 <%- include('../partials/_navbar.ejs') %>
 
-<div class="record-details">
-    <p><strong>Artist:</strong> <%= record.artist %></p>
-    <p><strong>Album:</strong> <%= record.album %></p>
-    <p><strong>Format:</strong> <%= record.format %></p>
-    <p><strong>Rating:</strong> <%= record.rating || 'N/A' %></p>
-    <p><strong>Review:</strong> <%= record.review || 'No review available.' %></p>
-</div>
+    <div class="record-details">
+        <p><strong>Artist:</strong>
+            <%= record.artist %>
+        </p>
+        <p><strong>Album:</strong>
+            <%= record.album %>
+        </p>
+        <p><strong>Format:</strong>
+            <%= record.format %>
+        </p>
+        <p><strong>Rating:</strong>
+            <%= record.rating || 'N/A' %>
+        </p>
+        <p><strong>Review:</strong>
+            <%= record.review || 'No review available.' %>
+        </p>
+    </div>
 
-<a href="/users/<%= user._id %>/records/<%= record._id %>/edit" class="btn">Edit</a>
-<a href="/users/<%= user._id %>/records" class="btn">Back to Collection</a>
+    <a href="/users/<%= user._id %>/records/<%= record._id %>/edit" class="btn">Edit</a>
+    <a href="/users/<%= user._id %>/records" class="btn">Back to Collection</a>
