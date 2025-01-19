@@ -7,7 +7,7 @@ dotenv.config();
 
 const passUserToView = require('./middleware/pass-user-to-view.js');
 const isSignedIn = require('./middleware/is-signed-in.js');
-const User = require('./models/user.js'); // Import the User model
+const User = require('./models/user.js');
 
 const authController = require('./controllers/auth.js');
 const usersController = require('./controllers/users.js');
@@ -25,33 +25,27 @@ app.use(session({
 }));
 app.use(passUserToView);
 
-// Routes
 app.use('/auth', authController);
 app.use(isSignedIn);
 app.use('/users', usersController);
 app.use('/users/:userId/records', recordsController);
 app.use('/records', recordsController);
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record-collection', { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record-collection', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');
 });
 
-// Root Route
 app.get('/', (req, res) => {
     if (!req.session.user) {
-        // For non-logged-in users
         return res.render('index.ejs', { user: null });
     }
-    // For logged-in users, show a personalized welcome
     res.render('index.ejs', { user: req.session.user });
 });
 
-// Start the Server
 app.listen(process.env.PORT || 3000, () => {
     console.log('Server is running...');
 });

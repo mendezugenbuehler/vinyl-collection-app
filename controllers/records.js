@@ -3,7 +3,8 @@ const router = express.Router();
 const User = require('../models/user.js');
 
 router.get('/new', (req, res) => {
-    res.render('records/new.ejs');
+    const userId = req.session.user._id;
+    res.render('records/new.ejs', { userId });
 });
 
 router.get('/:userId', async (req, res) => {

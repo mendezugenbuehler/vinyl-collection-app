@@ -2,44 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Record Collection</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Record</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
-<body>
+<body class="add-record-page">
     <%- include('../partials/_navbar.ejs') %>
-        <h1>Your Record Collection</h1>
 
-        <% if (records.length> 0) { %>
-            <ul class="record-list">
-                <% records.forEach((record)=> { %>
-                    <li class="record-item">
-                        <div class="record-schema">
-                            <strong>
-                                <%= record.artist %> - <%= record.album %>
-                            </strong><br />
-                            Format: <%= record.format %><br />
-                                Rating: <%= record.rating || 'N/A' %><br />
-                                    Review: <%= record.review || 'No review available' %>
-                        </div>
-                        <div class="record-actions">
-                            <a href="/users/<%= user._id %>/records/<%= record._id %>/edit"
-                                class="btn record-action-btn">Edit</a>
-                            <form action="/users/<%= user._id %>/records/<%= record._id %>?_method=DELETE"
-                                method="POST">
-                                <button type="submit" class="btn record-action-btn">Delete</button>
-                            </form>
-                        </div>
-                    </li>
-                    <% }); %>
-            </ul>
-            <% } else { %>
-                <p>You have no records in your collection yet.</p>
-                <% } %>
+        <main class="form-container">
+            <h1>Add a New Record</h1>
 
-                    <a href="/users/<%= user._id %>/records/new" class="btn add-new-record">Add New Record</a>
+            <form action="/users/<%= userId %>/records" method="POST">
+                <label for="artist">Artist</label>
+                <input type="text" name="artist" id="artist" required>
+
+                <label for="album">Album</label>
+                <input type="text" name="album" id="album" required>
+
+                <label for="format">Format</label>
+                <select name="format" id="format">
+                    <option value="LP">LP</option>
+                    <option value="7 inch">7 inch</option>
+                </select>
+
+                <label for="rating">Rating</label>
+                <select name="rating" id="rating">
+                    <option value="*">*</option>
+                    <option value="**">**</option>
+                    <option value="***">***</option>
+                    <option value="****">****</option>
+                    <option value="*****">*****</option>
+                </select>
+
+                <label for="review">Review</label>
+                <textarea name="review" id="review" class="review-box"></textarea>
+
+                <button type="submit" class="btn">Add Record</button>
+            </form>
+        </main>
+
+        <footer class="page-footer">
+            <a href="/users/<%= userId %>/records" class="btn back-to-collection-btn">Back to Your Collection</a>
+        </footer>
 </body>
 
 </html>

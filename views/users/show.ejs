@@ -4,53 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= user.username %>'s Collection
-    </title>
-    <link rel="stylesheet" href="/styles.css" />
+    <title>User's Collection</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
-<body>
-    <header>
-        <%- include('../partials/_navbar.ejs') %>
-    </header>
+<body class="user-collection-page">
+    <%- include('../partials/_navbar.ejs') %>
 
-    <main class="user-collection-main">
-        <h1>
-            <%= user.username %>'s Collection
-        </h1>
+        <main class="user-collection-main">
+            <h1>
+                <%= user.username %>'s Collection
+            </h1>
 
-        <% if (user.recordCollection.length> 0) { %>
-            <ul class="record-list">
-                <% user.recordCollection.forEach((record)=> { %>
-                    <li class="record-item">
-                        <div class="record-schema">
+            <% if (user.recordCollection.length> 0) { %>
+                <ul class="record-list">
+                    <% user.recordCollection.forEach((record)=> { %>
+                        <li class="record-item">
                             <strong>Artist:</strong>
-                            <%= record.artist %><br />
+                            <%= record.artist %><br>
                                 <strong>Album:</strong>
-                                <%= record.album %><br />
+                                <%= record.album %><br>
                                     <strong>Format:</strong>
-                                    <%= record.format %><br />
+                                    <%= record.format %><br>
                                         <% if (record.rating) { %>
                                             <strong>Rating:</strong>
-                                            <%= record.rating %><br />
+                                            <%= record.rating %><br>
                                                 <% } %>
                                                     <% if (record.review) { %>
                                                         <strong>Review:</strong>
-                                                        <%= record.review %><br />
+                                                        <%= record.review %><br>
                                                             <% } %>
-                        </div>
-                    </li>
-                    <% }) %>
-            </ul>
-            <% } else { %>
-                <p>This user has no records in their collection yet.</p>
-                <% } %>
-    </main>
+                        </li>
+                        <% }); %>
+                </ul>
+                <% } else { %>
+                    <p>This user has no records in their collection yet.</p>
+                    <% } %>
+        </main>
 
-    <footer class="page-footer">
-        <a href="/users" class="btn">Back to Explore Our Community</a>
-    </footer>
+        <footer class="page-footer">
+            <a href="/users" class="btn back-to-explore">Back to Explore Community</a>
+        </footer>
 </body>
 
 </html>
